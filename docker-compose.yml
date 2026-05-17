@@ -1,0 +1,44 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-log:/mosquitto/log
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_sub -h localhost -t '$$SYS/#' -C 1 -W 2 >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+
+  mqtt-tail:
+    image: eclipse-mosquitto:2
+    depends_on:
+      mqtt:
+        condition: service_healthy
+    command: ["mosquitto_sub", "-h", "mqtt", "-t", "miflora/#", "-v"]
+
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.bot
+    env_file:
+      - .env
+    environment:
+      MQTT_HOST: mqtt
+      MQTT_PORT: "1883"
+      DB_PATH: /data/flora.sqlite
+      PLANTS_CONFIG: /app/config/plants.json
+    volumes:
+      - ./config:/app/config:ro
+      - bot-data:/data
+    depends_on:
+      mqtt:
+        condition: service_healthy
+
+volumes:
+  mosquitto-data:
+  mosquitto-log:
+  bot-data:

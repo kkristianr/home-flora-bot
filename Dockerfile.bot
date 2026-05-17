@@ -1,0 +1,14 @@
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+
+WORKDIR /app
+ENV PYTHONPATH=/app
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
+
+COPY pyproject.toml uv.lock /app/
+RUN uv sync --frozen --no-dev
+
+COPY flora /app/flora
+COPY scripts/plant_bot.py /app/scripts/plant_bot.py
+
+CMD ["uv", "run", "--frozen", "--no-dev", "python", "scripts/plant_bot.py"]

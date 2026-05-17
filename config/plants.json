@@ -1,0 +1,10 @@
+{
+  "plants": [
+    {
+      "slug": "ficus-lyrata",
+      "name": "Ficus lyrata",
+      "plant_id": "ficus lyrata",
+      "sensor_address": "18B2C760-2C41-F033-BA87-9A5849CA1BD1"
+    }
+  ]
+}

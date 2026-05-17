@@ -1,0 +1,33 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Python environments and package caches
+.venv/
+.python-version
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Tool caches
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Local runtime data
+*.sqlite
+*.sqlite3
+*.db
+data/
+bot-data/
+
+# Docker and local overrides
+docker-compose.override.yml
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
