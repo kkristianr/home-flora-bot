@@ -1,10 +1,8 @@
-# Flora
+# Telegram Bot for monitoring home plants
 
 Self-hosted home plant monitoring with Xiaomi Mi Flora / Flower Care sensors.
 
-Flora reads plant sensor data, stores local history, compares readings with OpenPlantbook care ranges, and shows a mobile-friendly Telegram bot UI for plant status and charts.
-
-Most of the code in this project was written with AI assistance.
+It reads plant sensor data, stores local history, compares readings with OpenPlantbook care ranges, and shows a mobile-friendly Telegram bot UI for plant status and charts.
 
 ## What It Does
 
@@ -16,13 +14,6 @@ Most of the code in this project was written with AI assistance.
 - Runs the infrastructure in Docker.
 
 On macOS, the BLE reader runs locally because Docker Desktop does not expose the built-in Bluetooth adapter. On Raspberry Pi, the BLE reader can move into Docker later.
-
-## Built On
-
-- [ThomDietrich/miflora-mqtt-daemon](https://github.com/ThomDietrich/miflora-mqtt-daemon), as the main reference for Mi Flora + MQTT workflows.
-- [basnijholt/miflora](https://github.com/basnijholt/miflora), as part of the Mi Flora Python ecosystem.
-- [Bleak](https://github.com/hbldh/bleak), for macOS BLE access.
-- [OpenPlantbook](https://open.plantbook.io), for plant care ranges and images.
 
 ## Setup
 
@@ -100,7 +91,11 @@ make lint         # ruff check
 make format       # ruff format + safe fixes
 ```
 
-## Notes
+## Built On
 
-- Never commit `.env`.
-- More architecture detail is in `ARCHITECTURE.md`.
+- [ThomDietrich/miflora-mqtt-daemon](https://github.com/ThomDietrich/miflora-mqtt-daemon), as the main reference for Mi Flora + MQTT workflows.
+- [basnijholt/miflora](https://github.com/basnijholt/miflora), as part of the Mi Flora Python ecosystem.
+- [Bleak](https://github.com/hbldh/bleak), for macOS BLE access.
+- [OpenPlantbook](https://open.plantbook.io), for plant care ranges and images.
+
+Most of the code in this project was written with AI assistance.
